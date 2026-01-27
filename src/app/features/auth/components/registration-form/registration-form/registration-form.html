@@ -1,0 +1,33 @@
+<div class="register-form">
+    <div class="mb-2">
+        <app-custom-input label="Full Name" inputType="text" [required]="true"></app-custom-input>
+    </div>
+    <div class="mb-2">
+        <app-custom-input label="Email/Phone" inputType="emailOrPhone" [required]="true"></app-custom-input>
+    </div>
+    <div class="mb-2">
+        <app-custom-date-picker label="Date of Birth" mode="date" [required]="true">
+        </app-custom-date-picker>
+    </div>
+    <div class="mb-2">
+        <app-custom-radio label="Gender" [options]="genderOptions" [required]="true">
+        </app-custom-radio>
+    </div>
+    <div class="mb-2">
+        <app-custom-input label="Password" inputType="password" [required]="true"></app-custom-input>
+    </div>
+    <div class="mb-2">
+        <app-custom-input label="Confirm Password" inputType="password" [required]="true"></app-custom-input>
+    </div>
+    <div class="action-bar">
+        <button class="btn btn-login" (click)="goToLogin()">
+            ← Login
+        </button>
+        <button class="btn btn-register">
+            Register
+        </button>
+        <button class="btn btn-clear" (click)="clearForm()">
+            Clear
+        </button>
+    </div>
+</div>

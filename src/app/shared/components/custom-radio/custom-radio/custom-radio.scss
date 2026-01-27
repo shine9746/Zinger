@@ -1,0 +1,75 @@
+.custom-radio {
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-label {
+  font-size: 0.875rem;
+  margin-bottom: 6px;
+  color: #374151;
+}
+
+/* Layout */
+.radio-group {
+  display: flex;
+  gap: 20px;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+/* Radio option */
+.radio-option {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #374151;
+  position: relative;
+}
+
+/* Hide native radio */
+.radio-option input {
+  position: absolute;
+  opacity: 0;
+}
+
+/* Custom circle */
+.radio-circle {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 2px solid #9ca3af;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 120ms ease;
+}
+
+/* Inner dot */
+.radio-circle::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: transparent;
+  transition: background-color 120ms ease;
+}
+
+/* Checked state */
+.radio-option input:checked + .radio-circle {
+  border-color: var(--color-primary, #2563eb);
+}
+
+.radio-option input:checked + .radio-circle::after {
+  background: var(--color-primary, #2563eb);
+}
+
+/* 🔴 REQUIRED STATE */
+.radio-option.required .radio-circle {
+  border-color: var(--color-required);
+}

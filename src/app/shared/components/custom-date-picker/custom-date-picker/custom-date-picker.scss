@@ -1,0 +1,84 @@
+/* Root */
+.custom-input {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Label */
+.custom-label {
+  font-size: 0.875rem;
+  margin-bottom: 6px;
+  color: #374151;
+}
+
+/* Input container */
+.input-shell {
+  display: flex;
+  align-items: center;
+
+  padding-left: 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #ffffff;
+
+  transition: border-color 120ms ease;
+
+  &:focus-within {
+    border-color: var(--color-primary, #2563eb);
+  }
+
+  input {
+    border: none;
+    outline: none;
+    background: transparent;
+  }
+
+  input[matInput] {
+    flex: 1;
+    padding: 10px 0;
+  }
+}
+
+/* Required state */
+.custom-input.is-required .input-shell {
+  border-color: var(--color-required, #ef4444);
+}
+
+/* ---------- DATEPICKER INLINE TIME ---------- */
+
+.datetime-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  padding: 10px 12px;
+}
+
+/* Time row */
+.time-inline-area {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding-top: 8px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.time-label {
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.time-input {
+  width: 110px;
+  padding: 4px 6px;
+
+  font-size: 0.85rem;
+}
+
+/* Done button */
+.apply-btn {
+  align-self: flex-end;
+  font-size: 0.8rem;
+}

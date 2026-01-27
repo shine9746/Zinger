@@ -1,0 +1,10 @@
+@use '@angular/material' as mat;
+
+$theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$indigo-palette
+  )
+));
+
+@include mat.all-component-themes($theme);

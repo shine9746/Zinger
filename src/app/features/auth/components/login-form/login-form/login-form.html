@@ -1,0 +1,9 @@
+<div class="login-form">
+  <app-custom-input label="Email" inputType="email" [required]="true" [(inputValue)]="email">
+  </app-custom-input>
+  <app-custom-input label="Password" inputType="password" [required]="true">
+  </app-custom-input>
+  <button type="button" class="btn-primary btn-full" (click)="login()">
+    Login
+  </button>
+</div>

@@ -1,0 +1,15 @@
+<div class="custom-input" [class.is-required]="!inputValue() && required()">
+    <label class="custom-label">
+        {{ label() }}
+    </label>
+    <div class="input-shell">
+        <input matInput class="custom-control" [value]="inputValue()"
+            [type]="inputType() === 'password'? !showPassword() ? 'password' : 'text' : inputType()"
+            (input)="inputValue.set($any($event.target).value)" />
+        @if (inputType() === 'password') {
+        <button type="button" class="eye-btn m-0 p-0" aria-label="Toggle password visibility" (click)="toggle()">
+            <mat-icon>{{ !showPassword() ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        }
+    </div>
+</div>

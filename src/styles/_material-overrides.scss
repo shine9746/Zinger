@@ -1,0 +1,27 @@
+.mat-mdc-raised-button.btn-primary {
+  --mdc-filled-button-container-color: #2563eb;
+  --mdc-filled-button-label-text-color: #ffffff;
+}
+
+
+/* ===== Hover state ===== */
+.mat-mdc-raised-button.btn-primary:hover {
+  filter: brightness(0.95);
+}
+
+/* ===== Full width helper ===== */
+.btn-full {
+  width: 100%;
+}
+
+
+/* 🔴 REQUIRED RADIO — MDC OVERRIDE (GLOBAL ONLY) */
+.radio-required mat-radio-button {
+  --mdc-radio-unselected-icon-color: #ef4444;
+  --mdc-radio-unselected-hover-icon-color: #ef4444;
+}
+
+/* Keep checked radios normal */
+.radio-required mat-radio-button.mdc-radio--checked {
+  --mdc-radio-unselected-icon-color: inherit;
+}

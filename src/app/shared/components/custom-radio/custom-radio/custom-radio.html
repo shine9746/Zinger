@@ -1,0 +1,12 @@
+<div class="custom-radio">
+    <label class="custom-label">{{ label }}</label>
+    <div class="radio-group">
+        @for (option of options; track $index) {
+        <label class="radio-option" [class.required]="required && !value">
+            <input type="radio" name="custom-radio" [checked]="value === option" (change)="select(option)" />
+            <span class="radio-circle"></span>
+            <span class="radio-text">{{ option.label }}</span>
+        </label>
+        }
+    </div>
+</div>

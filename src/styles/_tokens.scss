@@ -1,0 +1,39 @@
+:root {
+  /* ===== Colors ===== */
+  --color-primary: #3f51b5;
+  --color-primary-contrast: #ffffff;
+
+  --color-success: #2e7d32;
+  --color-warning: #ed6c02;
+  --color-danger: #d32f2f;
+  --color-required: #dc2626;
+  /* ===== Fonts ===== */
+  --font-family-base: 'Roboto', system-ui, sans-serif;
+  --font-family-alt: 'Inter', system-ui, sans-serif;
+
+  /* ===== Spacing ===== */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+
+  /* ===== Radius ===== */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+
+  /* ===== Buttons ===== */
+  --btn-color-primary: #12ad27 ;
+
+  --space-0: 0;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+
+  --toast-success: #16a34a;
+  --toast-error: #dc2626;
+  --toast-warning: #f59e0b;
+  --toast-info: #2563eb;
+}

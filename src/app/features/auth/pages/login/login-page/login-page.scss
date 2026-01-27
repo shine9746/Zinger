@@ -1,0 +1,21 @@
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  /* important for mobile edges */
+}
+
+.login-card {
+  width: 100%;
+  /* mobile: full width */
+  max-width: 400px;
+  /* desktop constraint */
+}
+
+.register-btn {
+  width: 100%;
+  /* better tap target on mobile */
+  margin-top: 8px;
+}
