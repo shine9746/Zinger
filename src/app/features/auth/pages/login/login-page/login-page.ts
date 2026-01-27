@@ -12,4 +12,7 @@ export class LoginPage {
   public register() {
     this.router.navigate(['/auth/register']);
   }
+  public login() {
+    this.router.navigate(['/dashboard']);
+  }
 }

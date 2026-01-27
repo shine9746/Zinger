@@ -12,4 +12,9 @@ export const routes: Routes = [
       import('./features/auth/auth-module')
         .then(m => m.AuthModule)
   },
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./features/dashboard/dashboard-routing-module').then(m => m.DashboardRoutingModule),
+  },
 ];

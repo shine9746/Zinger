@@ -1,5 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { CustomToasterService } from '../../../../../shared/services/custom-toaster.service/custom-toaster';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -10,9 +11,10 @@ import { CustomToasterService } from '../../../../../shared/services/custom-toas
 export class LoginForm {
   public email = signal('');
   public password = signal('');
-  constructor(private customToasterService: CustomToasterService) { }
+  constructor(private customToasterService: CustomToasterService, private router: Router) { }
 
   public login() {
     this.customToasterService.success('Login successful!');
+    this.router.navigate(['/auth/login']);
   }
 }
