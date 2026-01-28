@@ -1,7 +1,7 @@
 <div class="custom-input" [class.is-required]="required() && !date">
-  <label class="custom-label">{{ label() }}</label>
+  <label class="custom-label" for="date-picker-input">{{ label() }}</label>
   <div class="input-shell">
-    <input matInput [matDatepicker]="picker" [(ngModel)]="date" />
+    <input id="date-picker-input" matInput [matDatepicker]="picker" [(ngModel)]="date" />
     @if (mode() === 'datetime') {
     <input type="time" class="time-inline" [(value)]="time" />
     }

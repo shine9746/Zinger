@@ -1,14 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-import { DashboardRoutingModule } from './dashboard-routing-module';
-
-
-@NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    DashboardRoutingModule
-  ]
-})
-export class DashboardModule { }
+/**
+ * @deprecated Use standalone components and routing instead
+ * This file is kept for backward compatibility only
+ * All components are now standalone and loaded via loadComponent()
+ */
+export const DASHBOARD_COMPONENTS = [];

@@ -6,7 +6,7 @@
         <div class="mb-2">
             <mat-card-subtitle>Welcome back</mat-card-subtitle>
         </div>
-        <app-login-form></app-login-form>
+        <app-login-form (click)="login()"></app-login-form>
         <button mat-button color="primary" class="register-btn" (click)="register()">
             Create an account
         </button>

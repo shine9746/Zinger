@@ -1,12 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-
-@NgModule({
-  declarations: [
-  ],
-  imports: [
-    CommonModule
-  ]
-})
-export class SharedModule { }
+/**
+ * @deprecated This module is no longer used
+ * All components are now standalone and provided via index.ts
+ */
+export const SHARED_UTILITIES = [];

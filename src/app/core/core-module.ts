@@ -1,12 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-
-
-@NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ]
-})
-export class CoreModule { }
+/**
+ * @deprecated This module is no longer used
+ * Core services are now provided at root level using providedIn: 'root'
+ */
+export const CORE_UTILITIES = [];

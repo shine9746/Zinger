@@ -1,10 +1,12 @@
 import { Component, Input } from '@angular/core';
-import { MATERIAL_IMPORTS } from '../../../constants';
+import { MATERIAL_IMPORTS } from '../../constants';
 import { FormsModule } from '@angular/forms';
-export interface RadioOption<T = any> {
+
+export interface RadioOption<T = string | number> {
   label: string;
   value: T;
 }
+
 @Component({
   selector: 'app-custom-radio',
   imports: [...MATERIAL_IMPORTS, FormsModule],
@@ -14,10 +16,10 @@ export interface RadioOption<T = any> {
 export class CustomRadio {
   @Input() label = '';
   @Input() required = false;
-  @Input() options: RadioOption<any>[] = [];
-  @Input() value: RadioOption<any> | null = null;
+  @Input() options: RadioOption[] = [];
+  @Input() value: RadioOption | null = null;
 
-  public select(option: RadioOption<any>) {
+  public select(option: RadioOption): void {
     this.value = option;
   }
 }
