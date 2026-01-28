@@ -5,6 +5,6 @@
 export const dashboardRoutes = [
   {
     path: '',
-    loadComponent: () => import('./pages/dashboard-page/dashboard-page').then(m => m.DashboardPage)
+    loadComponent: () => import('./pages/dashboard').then(m => m.DashboardPage)
   }
 ];

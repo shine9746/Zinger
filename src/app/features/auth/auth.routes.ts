@@ -10,12 +10,12 @@ import { Routes } from '@angular/router';
 export const authRoutes: Routes = [
   {
     path: 'login',
-    loadComponent: () => import('./pages/login/login-page/login-page').then(m => m.LoginPage),
+    loadComponent: () => import('./pages/login/login').then(m => m.LoginPage),
     data: { title: 'Login' }
   },
   {
     path: 'register',
-    loadComponent: () => import('./pages/registration/registration-page/registration-page').then(m => m.RegistrationPage),
+    loadComponent: () => import('./pages/registration/registration').then(m => m.RegistrationPage),
     data: { title: 'Registration' }
   },
   {
