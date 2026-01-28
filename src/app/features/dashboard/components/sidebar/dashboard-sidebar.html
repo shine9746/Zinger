@@ -1,0 +1,67 @@
+<div class="sidebar-content" *ngIf="userProfile">
+  <!-- User Profile Card -->
+  <mat-card class="profile-card shadow-lg rounded-xl">
+    <mat-card-content class="p-0">
+      <!-- Avatar -->
+      <div class="avatar-section text-center mb-4">
+        <img [src]="userProfile.avatar" 
+             alt="User Avatar" 
+             class="user-avatar mb-3">
+        <h3 class="profile-name mb-1">{{ userProfile.name }}</h3>
+        <p class="profile-subtitle">{{ userProfile.email }}</p>
+      </div>
+
+      <!-- Stats Row -->
+      <div class="profile-stats grid gap-2 mb-4">
+        <div class="stat-item text-center">
+          <p class="stat-value">{{ userProfile.orderCount }}</p>
+          <p class="stat-label">Orders</p>
+        </div>
+        <div class="stat-item text-center">
+          <p class="stat-value">${{ userProfile.totalSpent.toFixed(2) }}</p>
+          <p class="stat-label">Total Spent</p>
+        </div>
+      </div>
+
+      <!-- Loyalty Points -->
+      <div class="loyalty-section mb-4 p-3 rounded-lg" style="background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));">
+        <p class="text-white text-sm mb-1">Loyalty Points</p>
+        <h4 class="text-white text-2xl font-bold">{{ userProfile.loyaltyPoints }}</h4>
+        <p class="text-white text-xs mt-1 opacity-80">Earn more points on every order</p>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="quick-actions gap-2">
+        <button mat-stroked-button class="action-btn w-full" [matTooltip]="'View Profile'" matTooltipPosition="above">
+          <mat-icon>person</mat-icon>
+          <span>Profile</span>
+        </button>
+        <button mat-stroked-button class="action-btn w-full" [matTooltip]="'Manage Addresses'" matTooltipPosition="above">
+          <mat-icon>location_on</mat-icon>
+          <span>Address</span>
+        </button>
+      </div>
+
+      <!-- Saved Addresses -->
+      <div class="saved-addresses mt-4">
+        <h5 class="font-semibold mb-2 flex items-center gap-2">
+          <mat-icon class="text-primary">bookmark</mat-icon>
+          Saved Addresses
+        </h5>
+        <div class="addresses-list gap-2">
+          <div *ngFor="let addr of userProfile.savedAddresses" 
+               class="address-item p-2 rounded-lg border border-divider cursor-pointer hover-bg">
+            <p class="font-semibold text-sm">{{ addr.label }}</p>
+            <p class="text-xs text-tertiary truncate">{{ addr.address }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Settings Link -->
+      <button mat-button class="w-full mt-4 text-primary" [matTooltip]="'Go to Settings'" matTooltipPosition="above">
+        <mat-icon>settings</mat-icon>
+        <span>Settings</span>
+      </button>
+    </mat-card-content>
+  </mat-card>
+</div>

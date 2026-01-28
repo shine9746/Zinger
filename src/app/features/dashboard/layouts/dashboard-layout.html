@@ -1,0 +1,110 @@
+<div class="dashboard-wrapper">
+  <!-- Mobile Sidebar Overlay -->
+  <div class="mobile-sidebar-overlay" 
+    *ngIf="isMobileSidebarOpen" 
+    (click)="closeMobileSidebar()">
+  </div>
+
+  <!-- Floating Mobile Controls -->
+  <div class="mobile-controls" *ngIf="data.userProfile">
+    <button mat-icon-button class="hamburger-btn" (click)="toggleMobileSidebar()">
+      <mat-icon>{{ isMobileSidebarOpen ? 'close' : 'menu' }}</mat-icon>
+    </button>
+    
+    <button mat-icon-button class="notification-btn">
+      <mat-icon matBadge="3" matBadgeColor="warn">notifications</mat-icon>
+    </button>
+  </div>
+
+  <div class="dashboard-container">
+    <!-- Sidebar (Inside Container) -->
+    <aside class="dashboard-sidebar" [class.mobile-open]="isMobileSidebarOpen">
+      <app-dashboard-sidebar [userProfile]="data.userProfile"></app-dashboard-sidebar>
+    </aside>
+
+  <!-- Main Content Area -->
+  <main class="dashboard-main">
+    <!-- Search Bar -->
+    <section class="search-section">
+      <div class="search-container">
+        <mat-icon class="search-icon">search</mat-icon>
+        <input type="text" placeholder="Search restaurants, dishes..." class="search-input">
+      </div>
+    </section>
+
+    <!-- Hero Carousel -->
+    <section class="carousel-section">
+      <app-hero-carousel [offers]="data.heroOffers"></app-hero-carousel>
+    </section>
+
+    <!-- Quick Stats Widget -->
+    <section class="stats-section">
+      <h2>Your Activity</h2>
+      <app-quick-stats [stats]="data.quickStats"></app-quick-stats>
+    </section>
+
+    <!-- Trending Restaurants -->
+    <section class="restaurants-section">
+      <div class="section-header">
+        <h2>Trending Now</h2>
+        <button mat-stroked-button class="view-all-btn">
+          <span>View All</span>
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </div>
+      <div class="restaurants-grid">
+        <app-restaurant-card *ngFor="let restaurant of data.trendingRestaurants" 
+                             [restaurant]="restaurant">
+        </app-restaurant-card>
+      </div>
+    </section>
+
+    <!-- New on Zinger -->
+    <section class="restaurants-section">
+      <div class="section-header">
+        <h2>New on Zinger</h2>
+        <button mat-stroked-button class="view-all-btn">
+          <span>View All</span>
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </div>
+      <div class="restaurants-grid">
+        <app-restaurant-card *ngFor="let restaurant of data.newRestaurants" 
+                             [restaurant]="restaurant">
+        </app-restaurant-card>
+      </div>
+    </section>
+
+    <!-- Offers -->
+    <section class="offers-section" *ngIf="data.offersDeals && data.offersDeals.length > 0">
+      <div class="section-header">
+        <h2>Special Offers</h2>
+        <button mat-stroked-button class="view-all-btn">
+          <span>View All</span>
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </div>
+      <div class="offers-grid">
+        <div *ngFor="let offer of data.offersDeals" class="offer-card">
+          <div class="offer-banner">
+            <span class="offer-discount">{{ offer.discount }}% OFF</span>
+            <span class="offer-code">Code: {{ offer.code }}</span>
+          </div>
+          <h3>{{ offer.title }}</h3>
+          <p>{{ offer.description }}</p>
+          <p class="expiry">Expires {{ offer.expiryDate | date: 'MMM d' }}</p>
+          <button mat-raised-button class="apply-btn">Apply Offer</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Right Sidebar -->
+  <aside class="dashboard-right-sidebar">
+    <app-dashboard-right-sidebar [recentOrders]="data.recentOrders"
+                                 [favoriteRestaurants]="data.favorites"
+                                 [loyaltyPoints]="data.userProfile.loyaltyPoints">
+    </app-dashboard-right-sidebar>
+  </aside>
+  </div>
+</div>

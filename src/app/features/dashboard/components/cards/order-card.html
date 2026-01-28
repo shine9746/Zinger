@@ -1,0 +1,77 @@
+<mat-card class="order-card" [class.delivered]="isDelivered()">
+  <mat-card-header>
+    <div class="header-content">
+      <div class="restaurant-info">
+        <h3 class="restaurant-name">{{ order.restaurantName }}</h3>
+        <p class="order-id">#{{ order.id.substring(0, 8).toUpperCase() }}</p>
+      </div>
+      <div class="status-badge" [class]="'status-' + order.status">
+        <mat-icon>{{ statusIcon }}</mat-icon>
+        <span>{{ getStatusLabel() }}</span>
+      </div>
+    </div>
+  </mat-card-header>
+
+  <mat-card-content>
+    <!-- Order Items Preview -->
+    <div class="items-preview">
+      <mat-icon>shopping_bag</mat-icon>
+      <span>{{ itemsPreview }}</span>
+    </div>
+
+    <!-- Delivery Info -->
+    <div class="delivery-info">
+      <div class="delivery-time">
+        <mat-icon>schedule</mat-icon>
+        <div class="time-content">
+          <p class="label">Estimated Delivery</p>
+          <p class="time">{{ getDeliveryTimeRemaining() }}</p>
+        </div>
+      </div>
+
+      <!-- Delivery Agent Info -->
+      <div *ngIf="order.deliveryAgent && order.status !== 'delivered'" class="agent-info">
+        <mat-icon matTooltip="Delivery partner assigned">person</mat-icon>
+        <div class="agent-details">
+          <p class="label">Delivery by</p>
+          <p class="name">{{ order.deliveryAgent.name }}</p>
+        </div>
+        <mat-icon class="rating" matTooltip="Driver rating">star</mat-icon>
+      </div>
+    </div>
+
+    <!-- Order Total -->
+    <div class="order-summary">
+      <span class="label">Total</span>
+      <span class="total">₹{{ order.totalAmount }}</span>
+    </div>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button *ngIf="!isDelivered()" 
+            mat-stroked-button 
+            class="action-btn"
+            (click)="onTrack()"
+            matTooltip="Track your order">
+      <mat-icon>location_on</mat-icon>
+      Track
+    </button>
+
+    <button mat-stroked-button 
+            class="action-btn"
+            (click)="onReorder()"
+            matTooltip="Reorder the same items">
+      <mat-icon>repeat</mat-icon>
+      Reorder
+    </button>
+
+    <button *ngIf="isDelivered()" 
+            mat-stroked-button 
+            class="action-btn"
+            (click)="onRate()"
+            matTooltip="Rate your experience">
+      <mat-icon>star_outline</mat-icon>
+      Rate
+    </button>
+  </mat-card-actions>
+</mat-card>

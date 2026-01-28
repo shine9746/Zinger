@@ -1,1 +1,25 @@
-<p>dashboard-page works!</p>
+<div class="dashboard-page">
+  <!-- Loading State -->
+  <div *ngIf="isLoading" class="loading-container">
+    <mat-spinner></mat-spinner>
+    <p>Loading your dashboard...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error && !isLoading" class="error-container">
+    <div class="error-content">
+      <mat-icon class="error-icon">error_outline</mat-icon>
+      <h2>{{ error }}</h2>
+      <button mat-raised-button color="primary" (click)="retryLoadData()">
+        <mat-icon>refresh</mat-icon>
+        Try Again
+      </button>
+    </div>
+  </div>
+
+  <!-- Dashboard Layout -->
+  <app-dashboard-layout *ngIf="dashboardData && !isLoading && !error" 
+                        [data]="dashboardData">
+  </app-dashboard-layout>
+</div>
+

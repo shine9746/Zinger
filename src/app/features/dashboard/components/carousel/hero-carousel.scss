@@ -1,0 +1,237 @@
+.hero-carousel {
+  position: relative;
+  width: 100%;
+  margin-bottom: var(--space-lg);
+
+  .carousel-slide {
+    position: relative;
+    height: 300px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--color-surface-secondary);
+
+    @media (max-width: 768px) {
+      height: 250px;
+    }
+
+    @media (max-width: 480px) {
+      height: 180px;
+      border-radius: var(--radius-md);
+    }
+  }
+
+  .slide-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-smooth);
+  }
+
+  .carousel-slide:hover .slide-image {
+    transform: scale(1.05);
+  }
+
+  .slide-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7));
+    display: flex;
+    align-items: flex-end;
+    padding: var(--space-md);
+
+    @media (max-width: 480px) {
+      padding: var(--space-sm);
+    }
+  }
+
+  .slide-content {
+    width: 100%;
+    animation: slideUp 0.5s ease-out;
+
+    @media (max-width: 768px) {
+      .slide-actions {
+        gap: var(--space-sm);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .slide-title {
+        font-size: 1rem;
+      }
+
+      .slide-description {
+        font-size: 0.85rem;
+      }
+    }
+  }
+
+  .slide-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: white;
+    margin: 0 0 var(--space-xs) 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  .slide-description {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0 0 var(--space-md) 0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .slide-actions {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+
+    @media (max-width: 480px) {
+      gap: var(--space-sm);
+
+      button {
+        font-size: 0.85rem;
+        padding: 6px 12px;
+
+        mat-icon {
+          font-size: 16px;
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+  }
+
+  .action-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-weight: 600;
+    transition: all var(--transition-default);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  .primary-btn {
+    background: linear-gradient(135deg, var(--color-primary), #e8b85f);
+    color: var(--color-text-dark);
+
+    &:hover {
+      background: linear-gradient(135deg, #e8b85f, var(--color-primary));
+    }
+  }
+
+  .secondary-btn {
+    border-color: white;
+    color: white;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  .carousel-controls {
+    position: absolute;
+    bottom: var(--space-md);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    z-index: 10;
+    backdrop-filter: blur(4px);
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--radius-full);
+    background: rgba(0, 0, 0, 0.3);
+
+    @media (max-width: 480px) {
+      gap: var(--space-sm);
+      padding: var(--space-xs) var(--space-sm);
+      bottom: var(--space-sm);
+    }
+  }
+
+  .nav-btn {
+    color: white;
+    transition: all var(--transition-default);
+
+    &:hover {
+      background: rgba(212, 165, 116, 0.3);
+      transform: scale(1.1);
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+
+    @media (max-width: 480px) {
+      width: 32px;
+      height: 32px;
+      font-size: 18px;
+
+      mat-icon {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+      }
+    }
+  }
+
+  .carousel-dots {
+    display: flex;
+    gap: var(--space-xs);
+    justify-content: center;
+    flex: 1;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: var(--radius-full);
+    background: rgba(255, 255, 255, 0.4);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-default);
+    padding: 0;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.6);
+      transform: scale(1.2);
+    }
+
+    &.active {
+      background: var(--color-primary);
+      width: 28px;
+      border-radius: var(--radius-full);
+    }
+
+    @media (max-width: 480px) {
+      width: 8px;
+      height: 8px;
+
+      &.active {
+        width: 24px;
+      }
+    }
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

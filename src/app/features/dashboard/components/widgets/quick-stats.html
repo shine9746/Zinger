@@ -1,0 +1,23 @@
+<div class="quick-stats-grid" *ngIf="stats">
+  <mat-card class="stat-card shadow-sm rounded-lg animate-fade-in" 
+            *ngFor="let item of stats_items; let i = index"
+            [style.--delay]="i * 0.1 + 's'">
+    <mat-card-content class="p-4">
+      <div class="stat-content">
+        <div class="stat-icon-wrapper">
+          <mat-icon class="stat-icon">{{ item.icon }}</mat-icon>
+        </div>
+        <div class="stat-info">
+          <p class="stat-label">{{ item.label }}</p>
+          <p class="stat-value">
+            <span *ngIf="item.label === 'This Month'">$</span>
+            {{ item.value === 'stats.activeOrders' ? stats.activeOrders :
+               item.value === 'stats.totalSpentMonth' ? (stats.totalSpentMonth | number:'1.2-2') :
+               item.value === 'stats.loyaltyPoints' ? stats.loyaltyPoints :
+               stats.savedAddresses }}
+          </p>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

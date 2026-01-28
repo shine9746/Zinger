@@ -1,0 +1,44 @@
+<div class="hero-carousel" *ngIf="offers.length > 0">
+  <!-- Main Slide -->
+  <div class="carousel-slide shadow-lg rounded-xl">
+    <img [src]="currentOffer.image" [alt]="currentOffer.title" class="slide-image">
+    
+    <div class="slide-overlay">
+      <div class="slide-content">
+        <h2 class="slide-title">{{ currentOffer.title }}</h2>
+        <p class="slide-description">{{ currentOffer.description }}</p>
+        <div class="slide-actions">
+          <button mat-raised-button class="action-btn primary-btn">
+            <mat-icon>local_offer</mat-icon>
+            Use Code: {{ currentOffer.code }}
+          </button>
+          <button mat-stroked-button class="action-btn secondary-btn">
+            <mat-icon>arrow_forward</mat-icon>
+            Explore
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation Controls -->
+  <div class="carousel-controls">
+    <button mat-icon-button class="nav-btn prev" (click)="prevSlide()" title="Previous">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
+    
+    <!-- Dots -->
+    <div class="carousel-dots">
+      <button *ngFor="let offer of offers; let i = index"
+              class="dot"
+              [class.active]="currentIndex === i"
+              (click)="goToSlide(i)"
+              [title]="'Go to slide ' + (i + 1)">
+      </button>
+    </div>
+
+    <button mat-icon-button class="nav-btn next" (click)="nextSlide()" title="Next">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+</div>

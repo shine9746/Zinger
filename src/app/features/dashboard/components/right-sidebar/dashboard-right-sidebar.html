@@ -1,0 +1,105 @@
+<div class="right-sidebar">
+  <!-- Loyalty Widget -->
+  <mat-card class="loyalty-card">
+    <mat-card-header>
+      <h3>Loyalty Rewards</h3>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="tier-badge" [style.background-color]="getRewardTierColor()">
+        <mat-icon>card_giftcard</mat-icon>
+        <span>{{ getRewardTier() }}</span>
+      </div>
+
+      <div class="points-display">
+        <p class="points-value">{{ loyaltyPoints }}</p>
+        <p class="points-label">Total Points</p>
+      </div>
+
+      <div class="reward-progress">
+        <div class="progress-label">
+          <span>Next Reward in</span>
+          <strong>{{ pointsToNextReward }} pts</strong>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" [style.width.%]="getRewardProgressPercentage()"></div>
+        </div>
+      </div>
+
+      <button mat-stroked-button class="rewards-btn" fullWidth>
+        <mat-icon>store</mat-icon>
+        Redeem Rewards
+      </button>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Tabs -->
+  <div class="tabs-header">
+    <button [class.active]="activeTab === 'orders'" 
+            (click)="setActiveTab('orders')"
+            class="tab-btn">
+      <mat-icon>shopping_bag</mat-icon>
+      Orders ({{ recentOrders.length }})
+    </button>
+    <button [class.active]="activeTab === 'favorites'" 
+            (click)="setActiveTab('favorites')"
+            class="tab-btn">
+      <mat-icon>favorite</mat-icon>
+      Favorites ({{ favoriteRestaurants.length }})
+    </button>
+  </div>
+
+  <!-- Orders Tab -->
+  <div *ngIf="activeTab === 'orders'" class="tab-content orders-tab">
+    <div *ngIf="recentOrders.length > 0; else noOrders" class="orders-list">
+      <app-order-card *ngFor="let order of recentOrders" 
+                       [order]="order"
+                       (reorder)="onReorder($event)"
+                       (track)="onTrack($event)"
+                       (rate)="onRate($event)">
+      </app-order-card>
+    </div>
+
+    <ng-template #noOrders>
+      <div class="empty-state">
+        <mat-icon>shopping_bag</mat-icon>
+        <p>No recent orders</p>
+        <button mat-stroked-button class="view-btn">
+          <mat-icon>explore</mat-icon>
+          Explore Restaurants
+        </button>
+      </div>
+    </ng-template>
+  </div>
+
+  <!-- Favorites Tab -->
+  <div *ngIf="activeTab === 'favorites'" class="tab-content favorites-tab">
+    <div *ngIf="favoriteRestaurants.length > 0; else noFavorites" class="favorites-list">
+      <div *ngFor="let restaurant of favoriteRestaurants" class="favorite-item">
+        <img [src]="restaurant.image" [alt]="restaurant.name" class="restaurant-thumbnail">
+        <div class="restaurant-details">
+          <h4>{{ restaurant.name }}</h4>
+          <p class="cuisines">{{ restaurant.cuisines.join(', ') }}</p>
+          <div class="rating-info">
+            <mat-icon class="rating-icon">star</mat-icon>
+            <span>{{ restaurant.rating }} ({{ restaurant.reviewCount }} reviews)</span>
+          </div>
+        </div>
+        <button mat-icon-button matTooltip="Order now" class="order-icon-btn">
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <ng-template #noFavorites>
+      <div class="empty-state">
+        <mat-icon>favorite_border</mat-icon>
+        <p>No favorite restaurants yet</p>
+        <button mat-stroked-button class="view-btn">
+          <mat-icon>explore</mat-icon>
+          Discover Restaurants
+        </button>
+      </div>
+    </ng-template>
+  </div>
+</div>

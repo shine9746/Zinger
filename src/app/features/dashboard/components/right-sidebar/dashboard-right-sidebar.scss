@@ -1,0 +1,305 @@
+.right-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: 0;
+
+  @media (max-width: 1024px) {
+    max-height: none;
+  }
+  @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+.loyalty-card {
+  background: linear-gradient(135deg, var(--color-primary), #e8b85f);
+  color: var(--color-text-dark);
+  border: none;
+  border-radius: var(--radius-md);
+
+  mat-card-header {
+    padding: var(--space-md) var(--space-md) var(--space-sm);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+    h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+  }
+
+  mat-card-content {
+    padding: var(--space-md);
+  }
+
+  .tier-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: 8px 16px;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: var(--space-md);
+    background: rgba(0, 0, 0, 0.1);
+    color: inherit;
+
+    mat-icon {
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .points-display {
+    text-align: center;
+    margin-bottom: var(--space-md);
+    padding: var(--space-md) 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+
+    .points-value {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .points-label {
+      margin: var(--space-xs) 0 0 0;
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+  }
+
+  .reward-progress {
+    margin-bottom: var(--space-md);
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      margin-bottom: var(--space-sm);
+
+      strong {
+        font-weight: 600;
+      }
+    }
+
+    .progress-bar {
+      height: 6px;
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 3px;
+      overflow: hidden;
+
+      .progress-fill {
+        height: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        transition: width var(--transition-smooth);
+      }
+    }
+  }
+
+  .rewards-btn {
+    border-color: rgba(0, 0, 0, 0.3);
+    color: inherit;
+    font-weight: 600;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.1);
+    }
+  }
+}
+
+.tabs-header {
+  display: flex;
+  gap: 0;
+  background: var(--color-surface-secondary);
+  border-radius: var(--radius-md);
+  padding: 4px;
+
+  .tab-btn {
+    flex: 1;
+    padding: 12px var(--space-sm);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    transition: all var(--transition-default);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+
+    mat-icon {
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+    }
+
+    &:hover {
+      background: var(--color-surface);
+    }
+
+    &.active {
+      background: var(--color-surface);
+      color: var(--color-primary);
+      box-shadow: 0 2px 8px var(--shadow-elevation-1);
+    }
+  }
+}
+
+.tab-content {
+  animation: fadeIn 0.3s ease-out;
+  padding: var(--space-md) 0;
+  min-height: 200px;
+
+  &.orders-tab {
+    .orders-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+
+      app-order-card {
+        animation: slideInUp 0.4s ease-out;
+      }
+    }
+  }
+
+  &.favorites-tab {
+    .favorites-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+  }
+}
+
+.favorite-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: var(--color-surface-secondary);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-default);
+
+  &:hover {
+    background: var(--color-surface);
+    box-shadow: 0 4px 12px var(--shadow-elevation-1);
+    transform: translateX(4px);
+  }
+
+  .restaurant-thumbnail {
+    width: 60px;
+    height: 60px;
+    border-radius: var(--radius-sm);
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  .restaurant-details {
+    flex: 1;
+    min-width: 0;
+
+    h4 {
+      margin: 0 0 4px 0;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .cuisines {
+      margin: 0 0 6px 0;
+      font-size: 0.8rem;
+      color: var(--color-text-secondary);
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .rating-info {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.85rem;
+      color: var(--color-text-secondary);
+
+      .rating-icon {
+        color: #ffc107;
+        font-size: 14px;
+        width: 14px;
+        height: 14px;
+      }
+    }
+  }
+
+  .order-icon-btn {
+    color: var(--color-primary);
+    flex-shrink: 0;
+
+    &:hover {
+      transform: translateX(2px);
+    }
+  }
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+  text-align: center;
+  min-height: 250px;
+  color: var(--color-text-secondary);
+
+  mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    margin-bottom: var(--space-md);
+    opacity: 0.6;
+  }
+
+  p {
+    margin: 0 0 var(--space-md) 0;
+    font-size: 0.95rem;
+  }
+
+  .view-btn {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+
+    &:hover {
+      background: var(--color-primary);
+      color: white;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

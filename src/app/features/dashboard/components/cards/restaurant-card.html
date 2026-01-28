@@ -1,0 +1,57 @@
+<mat-card class="restaurant-card shadow-sm rounded-xl hover-lift" *ngIf="restaurant">
+  <div class="restaurant-image-wrapper">
+    <img [src]="restaurant.image" alt="{{ restaurant.name }}" class="restaurant-image">
+    
+    <!-- Badge -->
+    <div class="badge" *ngIf="restaurant.badge">
+      <span class="badge-text">{{ restaurant.badge }}</span>
+    </div>
+
+    <!-- Discount Badge -->
+    <div class="discount-badge" *ngIf="restaurant.discount">
+      <span>{{ restaurant.discount }}%</span>
+    </div>
+
+    <!-- Status -->
+    <div class="status-badge" [class.closed]="!restaurant.isOpen">
+      {{ restaurant.isOpen ? 'Open' : 'Closed' }}
+    </div>
+  </div>
+
+  <mat-card-content class="p-3">
+    <!-- Restaurant Name & Rating -->
+    <div class="restaurant-header mb-2">
+      <h3 class="restaurant-name">{{ restaurant.name }}</h3>
+      <div class="rating-section">
+        <mat-icon class="rating-icon">star_fill</mat-icon>
+        <span class="rating-value">{{ restaurant.rating }}</span>
+        <span class="review-count">({{ restaurant.reviewCount }})</span>
+      </div>
+    </div>
+
+    <!-- Cuisines -->
+    <p class="cuisines-text mb-2">{{ restaurant.cuisines.join(' • ') }}</p>
+
+    <!-- Info Row -->
+    <div class="info-row mb-3">
+      <div class="info-item" [matTooltip]="'Delivery Time'" matTooltipPosition="above">
+        <mat-icon>schedule</mat-icon>
+        <span>{{ restaurant.deliveryTime }} min</span>
+      </div>
+      <div class="info-item" [matTooltip]="'Delivery Fee'" matTooltipPosition="above">
+        <mat-icon>local_shipping</mat-icon>
+        <span>${{ restaurant.deliveryFee.toFixed(2) }}</span>
+      </div>
+      <div class="info-item" [matTooltip]="'Minimum Order'" matTooltipPosition="above">
+        <mat-icon>shopping_cart</mat-icon>
+        <span>${{ restaurant.minOrder }}</span>
+      </div>
+    </div>
+
+    <!-- Action Button -->
+    <button mat-raised-button class="order-btn w-full" [disabled]="!restaurant.isOpen">
+      <mat-icon>arrow_forward</mat-icon>
+      Order Now
+    </button>
+  </mat-card-content>
+</mat-card>
