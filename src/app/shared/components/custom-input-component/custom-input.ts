@@ -1,4 +1,4 @@
-import { MATERIAL_IMPORTS } from '../../../constants';
+import { MATERIAL_IMPORTS } from '../../constants';
 import { Component, input, model, signal } from '@angular/core';
 
 @Component({

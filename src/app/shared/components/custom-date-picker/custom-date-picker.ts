@@ -1,6 +1,6 @@
 import { FormsModule } from '@angular/forms';
 import { Component, input } from '@angular/core';
-import { MATERIAL_IMPORTS } from '../../../constants';
+import { MATERIAL_IMPORTS } from '../../constants';
 type Mode = 'date' | 'datetime';
 @Component({
   selector: 'app-custom-date-picker',

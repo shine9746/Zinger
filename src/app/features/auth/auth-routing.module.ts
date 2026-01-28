@@ -1,15 +1,8 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { LoginPage } from './pages/login/login-page/login-page';
-import { RegistrationPage } from './pages/registration/registration-page/registration-page';
-
-const routes: Routes = [
-  { path: 'login', component: LoginPage },
-  { path: 'register', component: RegistrationPage },
+/**
+ * @deprecated Use standalone routing with loadComponent instead
+ * This file is kept for backward compatibility only
+ */
+export const authRoutes = [
+  { path: 'login', loadComponent: () => import('./pages/login/login-page/login-page').then(m => m.LoginPage) },
+  { path: 'register', loadComponent: () => import('./pages/registration/registration-page/registration-page').then(m => m.RegistrationPage) }
 ];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class AuthRoutingModule { }

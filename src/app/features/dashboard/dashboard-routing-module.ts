@@ -1,16 +1,10 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { DashboardPage } from './pages/dashboard-page/dashboard-page';
-
-const routes: Routes = [
-   {
+/**
+ * @deprecated Use standalone routing with loadComponent instead
+ * This file is kept for backward compatibility only
+ */
+export const dashboardRoutes = [
+  {
     path: '',
-    component: DashboardPage,
-  },
+    loadComponent: () => import('./pages/dashboard-page/dashboard-page').then(m => m.DashboardPage)
+  }
 ];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class DashboardRoutingModule { }

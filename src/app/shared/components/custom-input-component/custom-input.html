@@ -1,9 +1,9 @@
 <div class="custom-input" [class.is-required]="!inputValue() && required()">
-    <label class="custom-label">
+    <label class="custom-label" for="custom-input-field">
         {{ label() }}
     </label>
     <div class="input-shell">
-        <input matInput class="custom-control" [value]="inputValue()"
+        <input id="custom-input-field" matInput class="custom-control" [value]="inputValue()"
             [type]="inputType() === 'password'? !showPassword() ? 'password' : 'text' : inputType()"
             (input)="inputValue.set($any($event.target).value)" />
         @if (inputType() === 'password') {
