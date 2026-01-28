@@ -1,48 +1,95 @@
-/* Root */
+/* ===== CUSTOM DATE PICKER UNIFIED STYLES ===== */
+
+/* Root container */
 .custom-input {
   width: 100%;
   display: flex;
   flex-direction: column;
+  gap: var(--space-2);
 }
 
 /* Label */
 .custom-label {
-  font-size: 0.875rem;
-  margin-bottom: 6px;
-  color: #374151;
+  font-size: var(--fs-md);
+  font-weight: var(--fw-medium);
+  margin-bottom: var(--space-2);
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+
+  .text-danger {
+    color: var(--color-cancel);
+  }
 }
 
-/* Input container */
+/* Input container - UNIFIED HEIGHT 48px */
 .input-shell {
   display: flex;
   align-items: center;
+  width: 100%;
+  height: var(--input-height);
+  padding: 0 var(--input-padding);
+  border: var(--input-border-width) solid var(--color-border);
+  border-radius: var(--input-border-radius);
+  background: var(--color-bg);
+  transition: var(--input-transition);
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
 
-  padding-left: 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  background: #ffffff;
-
-  transition: border-color 120ms ease;
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--color-primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
 
   &:focus-within {
-    border-color: var(--color-primary, #2563eb);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.15);
+    transform: translateY(-2px);
+
+    &::before {
+      transform: scaleX(1);
+    }
   }
 
   input {
+    flex: 1;
     border: none;
     outline: none;
     background: transparent;
-  }
+    height: 100%;
+    padding: 0;
+    font-size: var(--fs-md);
+    color: var(--color-text);
+    font-family: var(--font-family-base);
+    box-sizing: border-box;
 
-  input[matInput] {
-    flex: 1;
-    padding: 10px 0;
+    &::placeholder {
+      color: var(--color-text-tertiary);
+      opacity: 0.7;
+    }
   }
 }
 
-/* Required state */
+/* Hover state */
+.input-shell:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.1);
+}
+
+/* Error state */
 .custom-input.is-required .input-shell {
-  border-color: var(--color-required, #ef4444);
+  border-color: var(--color-cancel);
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.1);
 }
 
 /* ---------- DATEPICKER INLINE TIME ---------- */

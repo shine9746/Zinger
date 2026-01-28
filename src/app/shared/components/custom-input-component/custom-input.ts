@@ -6,13 +6,16 @@ import { Component, input, model, signal } from '@angular/core';
   imports: [...MATERIAL_IMPORTS],
   templateUrl: './custom-input.html',
   styleUrl: './custom-input.scss',
+  standalone: true
 })
 export class CustomInput {
   public label = input<string>('');
+  public placeholder = input<string>('');
   public inputType = input<'text' | 'email' | 'password' | 'tel' | 'date' | 'emailOrPhone' | 'numberOnly' | 'textOnly' | 'decimalRange'>('text');
   public required = input<boolean>(false);
   public inputValue = model<string>('');
   public showPassword = signal(false);
+
   public toggle() {
     this.showPassword.update(v => !v);
   }

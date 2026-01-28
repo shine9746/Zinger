@@ -1,21 +1,580 @@
-.login-container {
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+  padding: var(--space-1);
+  background: var(--color-bg);
+  position: relative;
+
+  @media (max-width: 768px) {
+    padding: var(--space-1);
+  }
+
+  @media (max-width: 480px) {
+    padding: var(--space-1);
+  }
+}
+
+/* Background with mustard-themed gradient */
+.background-gradient {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(212, 165, 116, 0.05) 0%,
+    rgba(232, 196, 160, 0.03) 50%,
+    rgba(157, 124, 81, 0.02) 100%
+  );
+  pointer-events: none;
+  z-index: -1;
+}
+
+.login-page {
+  position: relative;
+  width: 100%;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 16px;
-  /* important for mobile edges */
 }
 
+.login-container {
+  width: 100%;
+  max-width: 440px;
+  animation: slideInUp 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+    padding: 0 var(--space-2);
+  }
+
+  @media (max-width: 480px) {
+    max-width: 100%;
+    padding: 0 var(--space-2);
+  }
+}
+
+/* Login card with premium styling */
 .login-card {
-  width: 100%;
-  /* mobile: full width */
-  max-width: 400px;
-  /* desktop constraint */
+  padding: var(--space-4);
+  border-radius: var(--radius-2xl);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  border: 2px solid var(--color-primary);
+  background: var(--color-surface);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Subtle gradient overlay */
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+      circle,
+      rgba(212, 165, 116, 0.08) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+    transition: all 0.6s ease;
+  }
+
+  &:hover::before {
+    transform: translate(-10%, -10%);
+  }
+
+  @media (max-width: 768px) {
+    padding: var(--space-3);
+  }
+
+  @media (max-width: 480px) {
+    padding: var(--space-2);
+  }
 }
 
-.register-btn {
+[data-theme="dark"] .login-card {
+  border-color: var(--color-primary);
+  background: var(--color-surface);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* Branding header */
+.login-header {
+  margin-bottom: var(--space-1);
+
+  .logo-badge-container {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    position: relative;
+  }
+
+  .logo-badge {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 12px 32px rgba(212, 165, 116, 0.2);
+    animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all 0.4s ease;
+    position: relative;
+    cursor: pointer;
+
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, transparent, rgba(212, 165, 116, 0.2), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 2px solid rgba(212, 165, 116, 0.3);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    &:hover {
+      box-shadow: 0 16px 40px rgba(212, 165, 116, 0.3);
+      
+      &::before {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      width: 50px;
+      height: 50px;
+      margin-bottom: var(--space-1);
+    }
+
+    @media (max-width: 480px) {
+      width: 48px;
+      height: 48px;
+      margin-bottom: var(--space-1);
+    }
+
+    .logo-icon {
+      font-size: 28px;
+      width: 28px;
+      height: 28px;
+      color: white;
+      animation: bounce 2s ease-in-out infinite;
+
+      @media (max-width: 768px) {
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+      }
+
+      @media (max-width: 480px) {
+        font-size: 20px;
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+
+  /* Zinger brand title */
+  .brand-title {
+    font-size: var(--fs-xl);
+    font-weight: var(--fw-extra-bold);
+    letter-spacing: 0.5px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 0;
+    animation: slideInDown 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    @media (max-width: 768px) {
+      font-size: var(--fs-md);
+    }
+
+    @media (max-width: 480px) {
+      font-size: var(--fs-md);
+      letter-spacing: 0.3px;
+    }
+  }
+
+  /* Tagline */
+  .brand-tagline {
+    font-size: 0.75rem;
+    color: var(--color-text-secondary);
+    font-weight: var(--fw-medium);
+    letter-spacing: 0.3px;
+    animation: fadeIn 0.8s ease 0.3s both;
+    margin: 0;
+
+    @media (max-width: 480px) {
+      font-size: 0.7rem;
+    }
+  }
+}
+
+/* Welcome section */
+.welcome-section {
+  text-align: center;
+  margin-bottom: var(--space-2);
+
+  mat-card-title {
+    font-size: var(--fs-md);
+    font-weight: var(--fw-bold);
+    color: var(--color-text);
+    margin-bottom: 0;
+
+    @media (max-width: 480px) {
+      font-size: var(--fs-sm);
+    }
+  }
+
+  mat-card-subtitle {
+    color: var(--color-text-secondary);
+    font-size: 0.8rem;
+
+    @media (max-width: 480px) {
+      font-size: 0.7rem;
+    }
+  }
+}
+
+/* Form container */
+.form-container {
+  margin-bottom: var(--space-1);
+  animation: slideInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
+}
+
+/* Divider */
+.divider-container {
+  margin: var(--space-1) 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+
+  .border-t {
+    border-top-width: 1px;
+    border-color: var(--color-border);
+  }
+
+  .flex-1 {
+    flex: 1;
+  }
+
+  .text-tertiary {
+    color: var(--color-text-tertiary);
+    white-space: nowrap;
+    font-size: 0.65rem;
+  }
+
+  @media (max-width: 480px) {
+    margin: var(--space-0) 0;
+    gap: var(--space-0);
+  }
+}
+
+/* Register button */
+.btn-outline {
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  background: transparent;
+  transition: all var(--transition-base);
+  position: relative;
+
+  &:hover {
+    background: var(--color-primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(212, 165, 116, 0.2);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.btn-full {
   width: 100%;
-  /* better tap target on mobile */
-  margin-top: 8px;
+}
+
+/* Footer */
+.login-footer {
+  text-align: center;
+  margin-top: var(--space-0);
+  animation: fadeIn 0.8s ease 0.4s both;
+
+  .footer-icon {
+    color: var(--color-primary);
+    margin-bottom: 0;
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+
+  p {
+    color: var(--color-text-tertiary);
+    margin: 0;
+    font-size: 0.6rem;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .login-card {
+    border-radius: var(--radius-xl);
+  }
+}
+
+/* Dark mode adjustments */
+[data-theme="dark"] {
+  .background-gradient {
+    background: linear-gradient(
+      135deg,
+      rgba(212, 165, 116, 0.03) 0%,
+      rgba(26, 20, 16, 0.05) 100%
+    );
+  }
+}
+
+// Animation keyframes
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.1);
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes logoRotate {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.12);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+@keyframes logoShadowPulse {
+  0%, 100% {
+    box-shadow: 0 12px 32px rgba(212, 165, 116, 0.25);
+  }
+  50% {
+    box-shadow: 0 18px 44px rgba(212, 165, 116, 0.4);
+  }
+}
+
+@keyframes ingerSlideIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes logoBounce {
+  0% {
+    transform: scale(1) translateY(0);
+  }
+  25% {
+    transform: scale(1.05) translateY(-3px);
+  }
+  50% {
+    transform: scale(1) translateY(0);
+  }
+  75% {
+    transform: scale(1.02) translateY(-1px);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes buttonPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(212, 165, 116, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(212, 165, 116, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(212, 165, 116, 0);
+  }
+}
+
+/* Logo interactive behavior */
+.logo-interactive {
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  .logo-badge.logo-bounce {
+    animation: logoRotate 2.5s ease-in-out, 
+                logoShadowPulse 2.5s ease-in-out;
+  }
+
+  .logo-text-inger {
+    display: inline-block;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--color-text-primary);
+    opacity: 0;
+    letter-spacing: 1px;
+    margin-left: 0;
+    visibility: hidden;
+
+    &.show {
+      visibility: visible;
+      animation: ingerSlideIn 1.5s ease-in forwards;
+    }
+  }
+}
+
+/* Hide scrollbars globally while keeping scroll */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+/* Responsive button behavior */
+.btn-register {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.btn-register .btn-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-register .btn-icon-mobile {
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mobile: show icon, hide text */
+@media (max-width: 640px) {
+  .btn-register .btn-text {
+    display: none !important;
+  }
+
+  .btn-register .btn-icon-mobile {
+    display: flex !important;
+    width: 24px;
+    height: 24px;
+    font-size: 24px;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Enhanced button hover effects */
+.btn-full {
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+
+  &:hover::before {
+    width: 300px;
+    height: 300px;
+  }
+
+  &:active {
+    animation: buttonPulse 0.6s ease-out;
+  }
 }

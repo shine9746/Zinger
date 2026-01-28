@@ -1,9 +1,42 @@
-<div class="login-form">
-  <app-custom-input label="Email" inputType="email" [required]="true" [(inputValue)]="email">
-  </app-custom-input>
-  <app-custom-input label="Password" inputType="password" [required]="true">
-  </app-custom-input>
-  <button type="button" class="btn-primary btn-full" (click)="login()">
-    Login
-  </button>
-</div>
+<form class="login-form">
+  <div class="form-group animate-slide-in-left" style="--delay: 0">
+    <app-custom-input 
+      label="Email Address" 
+      inputType="email" 
+      [required]="true" 
+      [(inputValue)]="email"
+      placeholder="Enter your email">
+    </app-custom-input>
+  </div>
+
+  <div class="form-group animate-slide-in-left" style="--delay: 0.1s">
+    <app-custom-input 
+      label="Password" 
+      inputType="password" 
+      [required]="true" 
+      [(inputValue)]="password"
+      placeholder="Enter your password">
+    </app-custom-input>
+  </div>
+
+  <div class="form-actions">
+    <button 
+      type="submit" 
+      class="btn-primary btn-full btn-signin" 
+      (click)="login()"
+      [matTooltip]="'Sign in to your account'"
+      matTooltipPosition="above">
+      <!-- Text version (desktop) -->
+      <span class="btn-text">
+        <mat-icon class="mr-1">login</mat-icon>
+        Sign In
+      </span>
+      <!-- Icon version (mobile) -->
+      <mat-icon class="btn-icon-mobile" svgIcon="login-icon"></mat-icon>
+    </button>
+  </div>
+
+  <div class="forgot-password-link text-center animate-fade-in" style="--delay: 0.2s">
+    <a href="#" class="text-primary text-sm hover:underline" [matTooltip]="'Reset your password'" matTooltipPosition="above">Forgot password?</a>
+  </div>
+</form>

@@ -1,8 +1,431 @@
-# Quick Reference Guide
+# 🎨 FoodHub UI System - Quick Reference
 
-## Folder Structure At-a-Glance
+## 🎯 What's New
+
+Your FoodHub app now has:
+- ✅ Light/Dark mode with one-click toggle
+- ✅ Professional design system
+- ✅ Responsive mobile-friendly layout
+- ✅ Smooth animations
+- ✅ Unified input styling
+- ✅ Modern mustard-themed brand colors
+
+---
+
+## 🌓 Theme System
+
+### How Theme Switching Works
+1. Click the moon/sun icon in the top-right corner
+2. Theme instantly switches between light and dark
+3. Your preference is saved automatically
+4. System preference is detected on first load
+
+### Using Theme in Components
+```typescript
+import { ThemeService } from '@app/core/services/theme.service';
+
+export class MyComponent {
+  themeService = inject(ThemeService);
+  
+  currentTheme = this.themeService.currentTheme(); // 'light' | 'dark'
+  
+  toggleDarkMode() {
+    this.themeService.toggleTheme();
+  }
+}
+```
+
+### CSS Styling for Theme
+```scss
+[data-theme='dark'] {
+  // Dark mode styles
+  background-color: #0f172a;
+  color: #f1f5f9;
+}
+
+[data-theme='light'] {
+  // Light mode styles
+  background-color: #f9fafb;
+  color: #111827;
+}
+```
+
+---
+
+## 🎨 Color System
+
+### Brand Colors
+```scss
+--color-brand: #d4a574;        // Mustard
+--color-primary: #22c55e;      // Green
+--color-danger: #ef4444;       // Red
+--color-secondary: #3b82f6;    // Blue
+```
+
+### Using Colors
+```scss
+background-color: var(--color-brand);      // Mustard
+background-color: var(--color-primary);    // Green
+background-color: var(--color-danger);     // Red
+
+// Text colors automatically adjust in dark/light mode
+color: var(--color-primary-text);      // Primary text
+color: var(--color-secondary-text);    // Secondary text
+color: var(--color-tertiary-text);     // Tertiary text
+```
+
+---
+
+## 📏 Spacing System
+
+All spacing uses the design tokens:
+
+```scss
+gap: var(--space-4);        // 16px
+padding: var(--space-3);    // 12px
+margin: var(--space-6);     // 24px
+
+// Responsive margins
+margin: var(--space-4);     // 16px on desktop
+@media (max-width: 768px) { margin: var(--space-3); }  // 12px on tablet
+@media (max-width: 480px) { margin: var(--space-2); }  // 8px on mobile
+```
+
+---
+
+## 🎨 Input Styling
+
+### Height Standard
+All inputs are **48px height**:
+- Desktop: 48px
+- Tablet (768px): 44px
+- Mobile (480px): 42px
+
+### Using Custom Input Component
+```html
+<app-custom-input 
+  label="Email"
+  inputType="email"
+  [required]="true"
+  placeholder="Enter your email"
+  [(inputValue)]="email">
+</app-custom-input>
+```
+
+### Input Focus Animation
+Inputs automatically get:
+- 4px colored glow on focus
+- TranslateY(-2px) lift effect
+- Smooth border color change
+- Validation states (green, red, orange)
+
+---
+
+## ✨ Animation System
+
+### Available Animations
+```scss
+// Fade animations
+.animate-fade-in { animation: fadeIn 0.6s ease-out; }
+
+// Slide animations
+.animate-slide-in-up { animation: slideInUp 0.6s ease-out; }
+.animate-slide-in-down { animation: slideInDown 0.6s ease-out; }
+.animate-slide-in-left { animation: slideInLeft 0.6s ease-out; }
+.animate-slide-in-right { animation: slideInRight 0.6s ease-out; }
+
+// Scale animations
+.animate-scale-in { animation: scaleIn 0.5s ease-out; }
+
+// Pulse animations
+.animate-pulse-light { animation: pulseLight 2s ease-in-out infinite; }
+```
+
+### Using Animations
+```html
+<div class="animate-fade-in">
+  Fades in smoothly
+</div>
+
+<div class="animate-slide-in-up" style="--delay: 0.2s">
+  Slides up with delay
+</div>
+```
+
+### Custom Animation with Delay
+```scss
+.my-element {
+  animation: slideInUp 0.6s ease-out;
+  animation-delay: var(--delay, 0);
+  animation-fill-mode: both;
+}
+
+// In HTML:
+<div class="my-element" style="--delay: 0.1s">Content</div>
+```
+
+---
+
+## 📱 Responsive Design
+
+### Breakpoints
+```scss
+// Default (desktop)
+width: 100%;
+
+// Tablet - 768px and below
+@media (max-width: 768px) {
+  width: 90%;
+}
+
+// Mobile - 480px and below
+@media (max-width: 480px) {
+  width: 100%;
+}
+```
+
+### Common Patterns
+```scss
+// Mobile-first button
+button {
+  padding: var(--space-2);  // Small on mobile
+  
+  @media (max-width: 768px) {
+    padding: var(--space-3);  // Medium on tablet
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 0.9rem;  // Smaller text
+  }
+}
+```
+
+---
+
+## 🔧 Component Examples
+
+### Login Page Pattern
+```typescript
+@Component({
+  selector: 'app-login',
+  template: `
+    <div class="login-container animate-fade-in">
+      <mat-card class="login-card">
+        <div class="logo-badge">
+          <mat-icon>restaurant_menu</mat-icon>
+        </div>
+        <app-login-form></app-login-form>
+      </mat-card>
+    </div>
+  `,
+  styleUrl: './login.scss'
+})
+export class LoginPage { }
+```
+
+### Form Pattern
+```html
+<form class="login-form">
+  <div class="form-group animate-slide-in-left" style="--delay: 0">
+    <app-custom-input 
+      label="Email" 
+      inputType="email"
+      placeholder="your@email.com">
+    </app-custom-input>
+  </div>
+  
+  <div class="form-group animate-slide-in-left" style="--delay: 0.1s">
+    <app-custom-input 
+      label="Password" 
+      inputType="password"
+      placeholder="Enter password">
+    </app-custom-input>
+  </div>
+  
+  <button type="submit" class="btn-primary btn-full">
+    <mat-icon>login</mat-icon>
+    Sign In
+  </button>
+</form>
+```
+
+---
+
+## 🎯 Best Practices
+
+### DO ✅
+- Use CSS variables for colors and spacing
+- Use responsive media queries
+- Apply animations with staggered delays
+- Keep input height at 48px
+- Use Material icons from `@angular/material/icon`
+- Follow the spacing scale
+- Test on mobile devices
+
+### DON'T ❌
+- Hard-code colors (use CSS variables)
+- Skip responsive design
+- Use too many animations (keep it subtle)
+- Change input height arbitrarily
+- Forget accessibility (alt text, labels, ARIA)
+- Use inline styles (use SCSS)
+
+---
+
+## 🚀 Common Tasks
+
+### Add a New Page
+1. Create component in `features/[feature]/pages/`
+2. Import Material modules needed
+3. Add to routing
+4. Apply theme-aware colors using CSS variables
+5. Use responsive media queries
+6. Add animations for visual polish
+
+### Style a New Component
+1. Use `--space-*` for spacing
+2. Use `var(--color-*)` for colors
+3. Add responsive design with media queries
+4. Use utility classes for common patterns
+5. Keep animations under 300ms
+6. Test in light and dark modes
+
+### Add Dark Mode Support
+1. All colors already support dark mode via CSS variables
+2. No additional code needed!
+3. Test your component in both themes
+4. Use `@media (prefers-color-scheme: dark)` if needed
+
+---
+
+## 📐 Grid & Layout
+
+### Standard Layout Pattern
+```scss
+.page-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-6);
+  
+  @media (max-width: 768px) {
+    padding: var(--space-4);
+  }
+  
+  @media (max-width: 480px) {
+    padding: var(--space-3);
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-6);
+  
+  @media (max-width: 768px) {
+    gap: var(--space-4);
+  }
+}
+```
+
+### Flex Patterns
+```scss
+// Center content
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Space between
+.space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+// Responsive flex direction
+.flex-responsive {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-4);
+  
+  @media (max-width: 480px) {
+    flex-direction: column;
+  }
+}
+```
+
+---
+
+## 🐛 Troubleshooting
+
+### Theme not switching?
+1. Check ThemeService is injected
+2. Verify localStorage is enabled
+3. Check browser console for errors
+4. Ensure `data-theme` attribute is on `<html>`
+
+### Inputs not styled correctly?
+1. Verify `_inputs.scss` is imported in `styles.scss`
+2. Check input has correct class names
+3. Verify Material form field is wrapped correctly
+4. Check responsive breakpoint styles
+
+### Animations not playing?
+1. Verify animation class is applied
+2. Check animation duration isn't too short
+3. Ensure element isn't hidden
+4. Check z-index layering
+5. Verify GPU acceleration with transform/opacity
+
+### Dark mode colors wrong?
+1. Check CSS variables have dark mode variants
+2. Verify `[data-theme='dark']` selector is used
+3. Check browser DevTools for computed styles
+4. Ensure localStorage isn't stuck on old value
+
+---
+
+## 📚 File Locations
 
 ```
+src/
+├── styles/
+│   ├── _tokens.scss           # Design variables
+│   ├── _utilities.scss        # Utility classes
+│   ├── _buttons.scss          # Button styles
+│   ├── _inputs.scss           # Input styling
+│   ├── _themes.scss           # Color themes
+│   ├── _base.scss             # Global styles
+│   └── styles.scss            # Main stylesheet
+├── app/
+│   ├── core/services/
+│   │   └── theme.service.ts   # Theme management
+│   ├── shared/components/
+│   │   ├── theme-toggle/      # Theme toggle button
+│   │   └── custom-input-component/
+│   └── features/auth/pages/
+│       └── login/             # Login page
+```
+
+---
+
+## ✅ Checklist for New Features
+
+- [ ] Colors use CSS variables
+- [ ] Spacing uses `--space-*`
+- [ ] Component is responsive (3 breakpoints)
+- [ ] Dark mode is tested
+- [ ] Icons are from Material
+- [ ] Input height is 48px (or breakpoint-adjusted)
+- [ ] Animations are smooth (<300ms)
+- [ ] Focus states are visible
+- [ ] Mobile viewport is tested
+- [ ] No hard-coded colors or sizes
+
+---
+
+**Need help?** Check the detailed documentation in `UI_ENHANCEMENT_COMPLETE.md`
 src/app/
 ├── core/                          # Singletons & infrastructure
 │   ├── guards/                    # Route guards

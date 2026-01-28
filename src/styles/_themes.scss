@@ -1,15 +1,113 @@
-/* ===== Light Theme ===== */
-[data-theme="light"] {
-  --color-bg: #ffffff;
-  --color-surface: #f9fafb;
-  --color-text: #1f2937;
+/* ========================================
+   THEME SYSTEM
+   Light & Dark Modes with Food Delivery Colors
+   Mustard Background Theme
+======================================== */
+
+/* ===== LIGHT THEME (Default) ===== */
+[data-theme="light"],
+:root {
+  /* Background & Surface */
+  --color-bg: #f9fafb;
+  --color-surface: #ffffff;
+  --color-surface-hover: #f3f4f6;
+
+  /* Accent Background (Mustard for containers) */
+  --color-accent-bg: #f5f1ed;
+
+  /* Text Colors */
+  --color-text: #111827;
+  --color-text-secondary: #4b5563;
+  --color-text-tertiary: #9ca3af;
+
+  /* Borders & Dividers */
   --color-border: #e5e7eb;
+  --color-border-light: #f3f4f6;
+  --color-divider: #e5e7eb;
+
+  /* Overlays & Backdrops */
+  --overlay-bg: rgba(0, 0, 0, 0.5);
+  --overlay-light: rgba(0, 0, 0, 0.08);
 }
 
-/* ===== Dark Theme ===== */
+/* ===== DARK THEME ===== */
 [data-theme="dark"] {
-  --color-bg: #121212;
-  --color-surface: #1e1e1e;
-  --color-text: #e5e7eb;
-  --color-border: #2a2a2a;
+  /* Background & Surface - Dark with proper contrast */
+  --color-bg: #0f1419;
+  --color-surface: #1a1f26;
+  --color-surface-hover: #242b35;
+
+  /* Accent Background (Mustard tone for dark mode) */
+  --color-accent-bg: #2a2420;
+
+  /* Text Colors - High contrast for readability */
+  --color-text: #f1f5f9;
+  --color-text-secondary: #cbd5e1;
+  --color-text-tertiary: #94a3b8;
+
+  /* Borders & Dividers - Using mustard as accent border */
+  --color-border: #334155;
+  --color-border-light: #475569;
+  --color-divider: #334155;
+
+  /* Primary colors - Mustard highlighting in dark mode */
+  --color-primary: #d4a574;
+  --color-primary-light: #e8c4a0;
+  --color-primary-dark: #9d7c51;
+
+  /* Action colors - Enhanced for dark mode visibility */
+  --color-cancel: #ff6b6b;
+  --color-cancel-light: #ff8787;
+  --color-cancel-dark: #ff5252;
+
+  --color-secondary: #ffa500;
+  --color-secondary-light: #ffb84d;
+  --color-secondary-dark: #ff8c00;
+
+  /* Status colors */
+  --color-success: #4ade80;
+  --color-success-light: #86efac;
+  --color-success-dark: #22c55e;
+
+  --color-warning: #facc15;
+  --color-warning-light: #fde047;
+  --color-warning-dark: #eab308;
+
+  --color-danger: #ef4444;
+  --color-danger-light: #f87171;
+  --color-danger-dark: #dc2626;
+
+  --color-info: #60a5fa;
+  --color-info-light: #93c5fd;
+  --color-info-dark: #3b82f6;
+
+  /* Overlays & Backdrops */
+  --overlay-bg: rgba(0, 0, 0, 0.8);
+  --overlay-light: rgba(255, 255, 255, 0.08);
+
+  /* Meta theme color */
+  color-scheme: dark;
+}
+
+/* ===== HIGH CONTRAST THEME ===== */
+[data-theme="high-contrast"] {
+  --color-bg: #000000;
+  --color-surface: #1a1a1a;
+  --color-surface-hover: #333333;
+  --color-accent-bg: #2a2a2a;
+
+  --color-text: #ffffff;
+  --color-text-secondary: #e0e0e0;
+  --color-text-tertiary: #b0b0b0;
+
+  --color-border: #ffffff;
+  --color-border-light: #666666;
+  --color-divider: #ffffff;
+
+  --color-primary: #00ff00;
+  --color-primary-dark: #00cc00;
+  --color-cancel: #ff0000;
+  --color-cancel-dark: #cc0000;
+
+  color-scheme: dark;
 }

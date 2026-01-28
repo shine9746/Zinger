@@ -1,48 +1,325 @@
 /* =========================
-   Brand Buttons
+   BUTTON STYLES
+   Zinger App - Mustard Theme
 ========================= */
 
-.btn-primary {
+/* ===== BASE BUTTON STYLES ===== */
+%btn-base {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: var(--space-2);
 
-  min-height: 48px; /* Material touch target */
-  padding: 0 16px;
-
-  background-color: var(--btn-color-primary);
-  color: var(--color-primary-contrast);
+  min-height: 48px;
+  padding: var(--space-3) var(--space-5);
 
   border: none;
-  border-radius: 4px; /* Material-like */
+  border-radius: var(--radius-lg);
 
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: 0.0892857em;
-  text-transform: uppercase;
+  font-family: var(--font-family-base);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.025em;
 
-  box-shadow:
-    0 3px 1px -2px rgba(0,0,0,.2),
-    0 2px 2px 0 rgba(0,0,0,.14),
-    0 1px 5px 0 rgba(0,0,0,.12);
+  box-shadow: var(--shadow-sm);
 
   cursor: pointer;
   user-select: none;
-  transition: box-shadow 200ms ease, background-color 200ms ease;
+  text-decoration: none;
+  text-align: center;
+
+  transition:
+    box-shadow 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    background-color 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    color 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+    opacity 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+
+  @media (max-width: 480px) {
+    min-height: 44px;
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--fs-base);
+  }
 }
 
-.btn-primary:hover {
-  filter: brightness(0.95);
+/* ===== PRIMARY BUTTON (Mustard - Main Action) ===== */
+.btn-primary,
+.mat-mdc-raised-button.btn-primary,
+button.btn-primary {
+  @extend %btn-base;
+
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: white;
+
+  &:hover:not(:disabled) {
+    background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary-dark));
+    box-shadow: 0 12px 24px rgba(212, 165, 116, 0.3);
+    transform: translateY(-2px);
+  }
+
+  &:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  &:active:not(:disabled) {
+    box-shadow: 0 8px 16px rgba(212, 165, 116, 0.2);
+  }
+
+  /* Dark mode styling */
+  [data-theme="dark"] & {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    color: #1a1f26;
+    box-shadow: 0 12px 24px rgba(212, 165, 116, 0.2);
+
+    &:hover:not(:disabled) {
+      background: linear-gradient(135deg, var(--color-primary-dark), #b8954f);
+      box-shadow: 0 12px 24px rgba(212, 165, 116, 0.4);
+    }
+
+    &:focus {
+      outline: 2px solid var(--color-primary);
+    }
+  }
 }
 
-.btn-primary:active {
-  box-shadow:
-    0 5px 5px -3px rgba(0,0,0,.2),
-    0 8px 10px 1px rgba(0,0,0,.14),
-    0 3px 14px 2px rgba(0,0,0,.12);
+/* ===== CANCEL BUTTON (Red - Destructive) ===== */
+.btn-cancel,
+.btn-danger,
+button.btn-cancel,
+button.btn-danger {
+  @extend %btn-base;
+
+  background-color: var(--color-cancel);
+  color: white;
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-cancel-dark);
+    box-shadow: 0 12px 24px rgba(239, 68, 68, 0.3);
+    transform: translateY(-2px);
+  }
+
+  &:focus {
+    outline: 2px solid var(--color-cancel);
+    outline-offset: 2px;
+  }
+
+  &:active:not(:disabled) {
+    box-shadow: 0 8px 16px rgba(239, 68, 68, 0.2);
+  }
 }
 
-.btn-primary:disabled {
-  opacity: 0.6;
+/* ===== SECONDARY BUTTON (Amber - Secondary Action) ===== */
+.btn-secondary,
+button.btn-secondary {
+  @extend %btn-base;
+
+  background-color: var(--color-secondary);
+  color: white;
+
+  &:hover:not(:disabled) {
+    background-color: var(--color-secondary-dark);
+    box-shadow: var(--shadow-md);
+  }
+
+  &:focus {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: 2px;
+  }
+
+  &:active:not(:disabled) {
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+/* ===== OUTLINE BUTTON (Ghost/Tertiary) ===== */
+.btn-outline,
+button.btn-outline {
+  @extend %btn-base;
+
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+  box-shadow: none;
+
+  &:hover:not(:disabled) {
+    background-color: rgba(212, 165, 116, 0.1);
+    box-shadow: var(--shadow-sm);
+  }
+
+  &:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  &:active:not(:disabled) {
+    box-shadow: var(--shadow-md);
+  }
+
+  /* Dark mode styling */
+  [data-theme="dark"] & {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 1.5px solid var(--color-primary);
+
+    &:hover:not(:disabled) {
+      background-color: rgba(212, 165, 116, 0.15);
+      box-shadow: 0 8px 16px rgba(212, 165, 116, 0.2);
+    }
+
+    &:active:not(:disabled) {
+      background-color: rgba(212, 165, 116, 0.2);
+    }
+  }
+}
+
+/* ===== TEXT BUTTON (Minimal) ===== */
+.btn-text,
+button.btn-text {
+  @extend %btn-base;
+
+  background-color: transparent;
+  color: var(--color-primary);
+  box-shadow: none;
+  padding: var(--space-2) var(--space-3);
+  min-height: 40px;
+
+  &:hover:not(:disabled) {
+    background-color: rgba(34, 197, 94, 0.08);
+  }
+
+  &:focus {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+  }
+
+  &:active:not(:disabled) {
+    background-color: rgba(34, 197, 94, 0.12);
+  }
+}
+
+/* ===== SMALL BUTTON VARIANT ===== */
+.btn-sm,
+button.btn-sm {
+  min-height: 36px;
+  padding: var(--space-1) var(--space-3);
+  font-size: var(--fs-sm);
+}
+
+/* ===== LARGE BUTTON VARIANT ===== */
+.btn-lg,
+button.btn-lg {
+  min-height: 52px;
+  padding: var(--space-3) var(--space-6);
+  font-size: var(--fs-lg);
+}
+
+/* ===== FULL WIDTH BUTTON ===== */
+.btn-full,
+button.btn-full {
+  width: 100%;
+}
+
+/* ===== ICON BUTTON ===== */
+.btn-icon,
+button.btn-icon {
+  min-height: 44px;
+  min-width: 44px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border-radius: var(--radius-full);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== LOADING STATE ===== */
+.btn-loading {
+  opacity: 0.7;
   cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ===== GROUP BUTTON STYLES ===== */
+.btn-group {
+  display: flex;
+  gap: var(--space-2);
+
+  &.btn-group-vertical {
+    flex-direction: column;
+
+    > button {
+      width: 100%;
+    }
+  }
+
+  &.btn-group-compact {
+    gap: 0;
+
+    > button:not(:first-child) {
+      border-radius: 0;
+    }
+
+    > button:first-child {
+      border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+    }
+
+    > button:last-child {
+      border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    }
+  }
+}
+
+/* ===== BUTTON WITH ICON ===== */
+.btn-with-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* ===== Material Design Button Overrides ===== */
+.mat-mdc-raised-button {
+  &.btn-primary {
+    --mdc-filled-button-container-color: var(--color-primary);
+    --mdc-filled-button-label-text-color: white;
+
+    &:hover {
+      --mdc-filled-button-container-color: var(--color-primary-dark);
+    }
+  }
+
+  &.btn-cancel {
+    --mdc-filled-button-container-color: var(--color-cancel);
+    --mdc-filled-button-label-text-color: white;
+
+    &:hover {
+      --mdc-filled-button-container-color: var(--color-cancel-dark);
+    }
+  }
+
+  &.btn-secondary {
+    --mdc-filled-button-container-color: var(--color-secondary);
+    --mdc-filled-button-label-text-color: white;
+
+    &:hover {
+      --mdc-filled-button-container-color: var(--color-secondary-dark);
+    }
+  }
 }

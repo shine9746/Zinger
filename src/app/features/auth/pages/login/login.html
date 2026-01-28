@@ -1,14 +1,65 @@
-<div class="login-container">
-    <mat-card class="login-card">
-        <div class="m-2">
-            <mat-card-title>Sign in</mat-card-title>
+<div class="login-page">
+  <!-- Animated background -->
+  <div class="background-gradient"></div>
+
+  <!-- Login container with smooth animation -->
+  <div class="login-container animate-fade-in">
+    <mat-card class="login-card shadow-lg rounded-xl hover-lift">
+      <!-- Logo/Branding Section with Zinger Logo -->
+      <div class="login-header mb-8 text-center logo-interactive" (click)="onLogoClick()">
+        <!-- Zinger Logo Icon - Interactive -->
+        <div class="logo-badge-container mb-6 animate-scale-in">
+          <div class="logo-badge" [matTooltip]="'Zinger - Fast Food Delivery'" matTooltipPosition="above">
+            <mat-icon class="logo-icon" svgIcon="zinger-logo"></mat-icon>
+          </div>
+          <!-- INGER text that appears with animation -->
+          <span class="logo-text-inger" [class.show]="ingerVisible">INGER</span>
         </div>
-        <div class="mb-2">
-            <mat-card-subtitle>Welcome back</mat-card-subtitle>
-        </div>
-        <app-login-form (click)="login()"></app-login-form>
-        <button mat-button color="primary" class="register-btn" (click)="register()">
-            Create an account
-        </button>
+
+        <p class="brand-tagline">Fast. Fresh. Delivered.</p>
+      </div>
+
+      <!-- Welcome Section -->
+      <div class="welcome-section mb-6 text-center animate-slide-in-up">
+        <mat-card-title class="text-2xl mb-2">Welcome Back</mat-card-title>
+        <mat-card-subtitle class="text-secondary">Sign in to your account</mat-card-subtitle>
+      </div>
+
+      <!-- Form Component -->
+      <div class="form-container animate-slide-in-up">
+        <app-login-form></app-login-form>
+      </div>
+
+      <!-- Divider with animation -->
+      <div class="flex items-center gap-3 my-6 divider-container">
+        <div class="flex-1 border-t border-divider"></div>
+        <span class="text-tertiary text-sm px-2">Don't have an account?</span>
+        <div class="flex-1 border-t border-divider"></div>
+      </div>
+
+      <!-- Register Button with responsive behavior -->
+      <button 
+        mat-button 
+        class="btn-outline btn-full py-3 rounded-lg font-semibold btn-interactive btn-register"
+        (click)="register()"
+        [matTooltip]="'Create a new account'"
+        matTooltipPosition="above">
+        <!-- Text version (desktop) -->
+        <span class="btn-text">
+          <mat-icon class="mr-2">person_add</mat-icon>
+          Create New Account
+        </span>
+        <!-- Icon version (mobile) -->
+        <mat-icon class="btn-icon-mobile" svgIcon="register-icon"></mat-icon>
+      </button>
     </mat-card>
+
+    <!-- Footer with security info -->
+    <div class="login-footer">
+      <mat-icon class="footer-icon">shield_verified</mat-icon>
+      <p class="text-tertiary text-xs text-center">
+        Your data is secure and encrypted
+      </p>
+    </div>
+  </div>
 </div>
