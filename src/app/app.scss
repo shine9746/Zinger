@@ -18,7 +18,7 @@
   position: fixed;
   top: var(--space-4);
   right: var(--space-4);
-  z-index: var(--z-fixed);
+  z-index: 2100;
   background: var(--color-surface);
   border-radius: 50%;
   padding: var(--space-2);
